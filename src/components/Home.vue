@@ -4,7 +4,7 @@
       <div class="elipse1"></div>
       <div class="elipse2"></div>
     </router-link>
-
+    <div class="header"></div>
     <div class="box-container" :class="pageClass">
       <router-link class="box composants" tag="div" to="/composants">
         <div class="top-container">
@@ -19,7 +19,11 @@
         </transition>
       </router-link>
       <router-link class="box typo" tag="div" to="typographie">
-        <h2>Typographie</h2>
+        <div class="top-container">
+          <h2>Typographie</h2>
+          <img src="../assets/images/typewriter.svg" alt />
+        </div>
+
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus error quasi repellat officiis aut iste rerum accusantium eius ad laboriosam!</p>
         <transition name="fade">
           <router-view name="view2"></router-view>
@@ -35,52 +39,46 @@
 
 <script>
 // @ is an alias to /src
-import { gsap } from "gsap";
+// import { gsap } from "gsap";
 export default {
   name: "Home",
   components: {},
   data() {
-    return {
-      // pageClass: "home"
-    };
+    return {};
   },
   computed: {
     pageClass() {
       return this.$route.name;
     }
   },
-  // beforeRouteUpdate (to, from, next) {
-  //   switch(to.name) {
-  //     case 'composants':
-  //       this.pageClass = 'composants';
-  //       break;
-  //     case 'typographie':
-  //       this.pageClass ='typographie';
-  //       break;
-  //   }
-  //   next();
-  // },
   watch: {
     $route(to) {
       if (to.name == "composants") {
-        let tl = gsap.timeline();
-        tl.to(".typo", { duration:1, x: 3000, ease: "power2.out", display: "none"})
-          .to(".composants", { duration: 0.6, width: "100%", ease: "power2.out"}, "+=0.5")
-        
-      } else {
-        window.console.log("nope");
+        //
+      } else if (to.name == "typographie") {
+        // window.console.log("nope");
+      } else if (to.name == "home") {
+        //
       }
     }
   },
-  methods: {
-    test() {
-      gsap.to(".typo", { duration: 1, x: 100 });
-    }
-  },
-  mounted() {}
+  methods: {},
+  mounted() {
+    // Defines animation when componant is selected
+  }
 };
 </script>
 <style lang="scss">
+body {
+  margin: 0;
+}
+//header
+
+.header {
+  height: 300px;
+  // background: #efefef;
+}
+
 // Menu
 
 .elipse-container {
@@ -119,18 +117,25 @@ export default {
   transform: rotate(46.5deg);
 }
 
+// General / home
+
+.home {
+  min-height: 2000px;
+  overflow-x: hidden;
+}
+
 // Containers
 
 .box {
-  
+  align-self: self-start;
   width: 50%;
   margin-top: 170px;
   box-sizing: border-box;
-  padding: 20px;
-  border: 1px solid black;
+  padding: 40px;
+  border: 1px solid white;
   cursor: pointer;
   font-family: "open sans";
-  
+
   &:nth-child(odd) {
     margin-right: 20px;
   }
@@ -141,66 +146,77 @@ export default {
       margin: 0 40px 0 0;
     }
     img {
-      width: 170px;
+      width: 140px;
     }
   }
-  &>p {
-    max-width: 260px;
+  & > p {
+    max-width: 500px;
   }
   p {
     margin-top: 40px;
     font-size: 14px;
     &:first_of-type {
-      
     }
   }
   &:hover {
     box-shadow: inset 0 0 0 2px black;
   }
   &-container {
-    overflow-x: hidden;
     transition-delay: 1s;
     transition: 1s;
-    display: flex;
-    padding: 20px;
-
-    // Gestion des états
-
-    // Typographie selectionné
-
-    // Composants selectionné
+    position: relative;
+    padding: 200px 20px 0;
+    max-width: 1400px;
+    margin: auto;
   }
 
-  // Etat au repos
-
-
-}
-
-// Animations / Transitions
-
-.fade-enter-active {
-  animation: fade-in 1s ease-out;
-  animation-delay: 3s;
-
-  opacity: 0;
-}
-.fade-leave-active {
-  opacity: 0;
-}
-@keyframes fade-in {
-  0% {
-    transform: translateY(70px);
-    opacity: 0;
+  // box composants
+  &.composants {
+    position: absolute;
+    width: 47%;
+    left: 20px;
+    top: 0;
   }
-  50% {
-    transform: translateY(0px);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
+  &.typo {
+    position: absolute;
+    width: 47%;
+    right: 20px;
+    top: 0;
+    .top-container {
+      img {
+        width: 170px;
+      }
+    }
   }
 }
+
+// Route changing
+
+.box-container.composants {
+  .box.typo {
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  .box.composants {
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+.box-container.typographie {
+  .box.typo {
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  .box.composants {
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
 
 @media screen and (max-width: 768px) {
 }
