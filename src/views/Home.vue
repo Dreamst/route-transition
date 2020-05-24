@@ -4,9 +4,17 @@
       <div class="elipse1"></div>
       <div class="elipse2"></div>
     </router-link>
-    <div class="header"></div>
+    <div class="header">
+      <router-link to="/">
+        <img src="../assets/images/undraw.svg" alt />
+      </router-link>
+      <h1>
+        GUI
+        <span>Next</span>
+      </h1>
+    </div>
     <div class="box-container" :class="pageClass">
-      <router-link class="box composants" tag="div" to="/composants">
+      <router-link class="box composants" tag="div" to="/composants/introduction">
         <div class="top-container">
           <h2>Composants</h2>
           <img src="../assets/images/components.svg" alt />
@@ -24,7 +32,7 @@
           <img src="../assets/images/typewriter.svg" alt />
         </div>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus error quasi repellat officiis aut iste rerum accusantium eius ad laboriosam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, suscipit necessitatibus eveniet dolorum iure nihil libero pariatur distinctio incidunt perferendis! Veritatis aliquid quisquam similique repudiandae dignissimos quos rerum ad dolore vel. Accusantium consequatur natus sunt est consectetur magni. Maiores odio quod vero libero dolore autem unde nostrum corporis aliquid tempora quas porro, sint deleniti distinctio, dolor harum cumque, est quia animi eum! Ipsum, explicabo reprehenderit. Natus magni aliquid repellat ab!</p>
         <transition name="fade">
           <router-view name="view2"></router-view>
         </transition>
@@ -75,14 +83,37 @@ body {
 //header
 
 .header {
-  height: 300px;
-  // background: #efefef;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  img {
+    width: 210px;
+    position: relative;
+    right: 10px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+  h1 {
+    font-family: "open sans";
+    font-size: 50px;
+    color: #313131;
+    margin: 0;
+    span {
+      font-size: 70px;
+    }
+  }
 }
 
 // Menu
 
 .elipse-container {
   cursor: pointer;
+  position: fixed;
+  z-index: 9999;
+
   &:hover {
     .elipse1 {
       width: 170.74px;
@@ -105,7 +136,7 @@ body {
   border-radius: 50%;
 }
 .elipse2 {
-  transition: 0.3s ease-out;
+  transition: 0.6s ease-out;
   z-index: 1;
   position: absolute;
   width: 140.33px;
@@ -125,20 +156,24 @@ body {
 }
 
 // Containers
+.box-container.home {
+  .box {
+    &:hover {
+      box-shadow: inset 0 0 0 2px black;
+    }
+  }
+}
 
 .box {
+  transform-origin: center;
   align-self: self-start;
   width: 50%;
-  margin-top: 170px;
   box-sizing: border-box;
   padding: 40px;
-  border: 1px solid white;
+  border: 1px solid black;
   cursor: pointer;
   font-family: "open sans";
 
-  &:nth-child(odd) {
-    margin-right: 20px;
-  }
   .top-container {
     display: flex;
     align-items: center;
@@ -153,21 +188,20 @@ body {
     max-width: 500px;
   }
   p {
-    margin-top: 40px;
+    margin-top: 0px;
     font-size: 14px;
     &:first_of-type {
     }
   }
-  &:hover {
-    box-shadow: inset 0 0 0 2px black;
-  }
+
   &-container {
     transition-delay: 1s;
     transition: 1s;
     position: relative;
-    padding: 200px 20px 0;
+    padding: 0 20px 0;
     max-width: 1400px;
     margin: auto;
+    margin-bottom: 70px;
   }
 
   // box composants
@@ -176,6 +210,11 @@ body {
     width: 47%;
     left: 20px;
     top: 0;
+    .top-container {
+      img {
+        margin-bottom: 21px;
+      }
+    }
   }
   &.typo {
     position: absolute;
@@ -184,7 +223,9 @@ body {
     top: 0;
     .top-container {
       img {
-        width: 170px;
+        width: 156px;
+        position: relative;
+        bottom: 10px;
       }
     }
   }
@@ -199,6 +240,7 @@ body {
     }
   }
   .box.composants {
+    cursor: auto;
     &:hover {
       box-shadow: none;
     }
@@ -217,7 +259,15 @@ body {
   }
 }
 
-
 @media screen and (max-width: 768px) {
+  .box {
+    .top-container {
+      flex-direction: column;
+      align-items: start;
+      h2 {
+        margin-top: 40px;
+      }
+    }
+  }
 }
 </style>
