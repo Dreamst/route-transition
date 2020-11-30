@@ -7,7 +7,8 @@ import Intro from '../components/Composants/Intro.vue';
 import Formulaire from '../components/Composants/Formulaire.vue';
 
 export default  {
-    path: '/',
+    mode: 'history',
+    path: '/home',
     name: 'home',
     component: Home,
     children: [

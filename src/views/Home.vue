@@ -1,16 +1,17 @@
 <template>
   <div class="home">
-    <router-link class="elipse-container" to="/">
+    <router-link class="elipse-container" to="/home">
       <div class="elipse1"></div>
       <div class="elipse2"></div>
     </router-link>
     <div class="header">
-      <router-link to="/">
+      <router-link to="/home">
         <img src="../assets/images/undraw.svg" alt />
       </router-link>
       <h1>
         GUI
         <span>Next</span>
+        <h1>current path is {{$router.currentRoute.path}}</h1>
       </h1>
     </div>
     <div class="box-container" :class="pageClass">
@@ -52,7 +53,9 @@ export default {
   name: "Home",
   components: {},
   data() {
-    return {};
+    return {
+      animOn: true,
+    };
   },
   computed: {
     pageClass() {
