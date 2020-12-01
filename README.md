@@ -1,24 +1,7 @@
-# design-system
+# Router transition experiment
 
-## Project setup
-```
-npm install
-```
+Hi! This app is an experiment with **Vue Router** and  **Gsap 3** aiming to create seamless route transitions with **VueJS**.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Commands (Vue CLI 3)
+ - `npm install`
+ - `npm run serve`
