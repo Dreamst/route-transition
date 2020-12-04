@@ -1,4 +1,4 @@
-# Router transition experiment
+# Route transition experiment
 
 Hi! This app is an experiment with **Vue Router** and  **Gsap 3** aiming to create seamless route transitions with **VueJS**.
 

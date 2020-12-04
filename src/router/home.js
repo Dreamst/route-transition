@@ -1,10 +1,10 @@
-import Composants from '../views/Composants.vue';
-import Typographie from '../views/Typographie.vue';
+import Route1 from '../views/Route1.vue';
+import Route2 from '../views/Route2.vue';
 import Home from '../views/Home.vue';
 // Subcomponents
 
-import Intro from '../components/Composants/Intro.vue';
-import Formulaire from '../components/Composants/Formulaire.vue';
+import Experience from '../components/route1/Experience.vue';
+import Languages from '../components/route1/Languages.vue';
 
 export default  {
     mode: 'history',
@@ -13,29 +13,29 @@ export default  {
     component: Home,
     children: [
         {
-            name: 'composants',
-            path: '/composants',
+            name: 'route1',
+            path: '/route1',
             components: {
-                view1: Composants
+                view1: Route1
             },
             children: [
                 {
-                    name: 'intro',
-                    path: '/composants/introduction',
-                    component: Intro,
+                    name: 'experience',
+                    path: '/route1/experience',
+                    component: Experience,
                 },
                 {
-                    name: 'formulaire',
-                    path: '/composants/formulaire',
-                    component: Formulaire,
+                    name: 'languages',
+                    path: '/route1/languages',
+                    component: Languages,
                 }
             ]
         },
         {
-            name: 'typographie',
-            path: '/typographie',
+            name: 'route2',
+            path: '/route2',
             components: {
-                view2: Typographie
+                view2: Route2
             }
         }
     ]

@@ -4,36 +4,44 @@
       <div class="elipse1"></div>
       <div class="elipse2"></div>
     </router-link>
+    <path-display v-bind:path="path"></path-display>
     <div class="header">
       <router-link to="/home">
         <img src="../assets/images/undraw.svg" alt />
       </router-link>
-      <h1>
-        GUI
-        <span>Next</span>
-        <h1>current path is {{$router.currentRoute.path}}</h1>
-      </h1>
+      <h1>Seamless route transition experiment</h1>
     </div>
     <div class="box-container" :class="pageClass">
-      <router-link class="box composants" tag="div" to="/composants/introduction">
+      <router-link class="box route1" tag="div" to="/route1">
         <div class="top-container">
-          <h2>Composants</h2>
+          <h2>Resume</h2>
           <img src="../assets/images/components.svg" alt />
         </div>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, suscipit necessitatibus eveniet dolorum iure nihil libero pariatur distinctio incidunt perferendis! Veritatis aliquid quisquam similique repudiandae dignissimos quos rerum ad dolore vel. Accusantium consequatur natus sunt est consectetur magni. Maiores odio quod vero libero dolore autem unde nostrum corporis aliquid tempora quas porro, sint deleniti distinctio, dolor harum cumque, est quia animi eum! Ipsum, explicabo reprehenderit. Natus magni aliquid repellat ab!</p>
+        <p>
+          A front-end developer links together the world of design and
+          technology, packaging up the utility of the back end in an inviting
+          way for users to interact with. They take website design files and
+          convert them into HTML, JavaScript (JS) and/or CSS code - the core
+          elements of front-end development. This includes design/layout,
+          content, buttons, images, navigation, and internal links.
+        </p>
 
         <transition name="fade">
           <router-view name="view1" tag="div"></router-view>
         </transition>
       </router-link>
-      <router-link class="box typo" tag="div" to="typographie">
+      <router-link class="box route2" tag="div" to="/route2">
         <div class="top-container">
-          <h2>Typographie</h2>
+          <h2>Blog</h2>
           <img src="../assets/images/typewriter.svg" alt />
         </div>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, suscipit necessitatibus eveniet dolorum iure nihil libero pariatur distinctio incidunt perferendis! Veritatis aliquid quisquam similique repudiandae dignissimos quos rerum ad dolore vel. Accusantium consequatur natus sunt est consectetur magni. Maiores odio quod vero libero dolore autem unde nostrum corporis aliquid tempora quas porro, sint deleniti distinctio, dolor harum cumque, est quia animi eum! Ipsum, explicabo reprehenderit. Natus magni aliquid repellat ab!</p>
+        <p>
+          The WordPress REST API provides an interface for applications to
+          interact with your WordPress site by sending and receiving data as
+          JSON (JavaScript Object Notation) objects.
+        </p>
         <transition name="fade">
           <router-view name="view2"></router-view>
         </transition>
@@ -49,24 +57,31 @@
 <script>
 // @ is an alias to /src
 // import { gsap } from "gsap";
+import PathDisplay from "@/components/PathDisplay";
+
 export default {
   name: "Home",
-  components: {},
+  components: {
+    PathDisplay
+  },
   data() {
     return {
-      animOn: true,
+      animOn: true
     };
   },
   computed: {
     pageClass() {
       return this.$route.name;
+    },
+    path() {
+      return this.$router.currentRoute.path;
     }
   },
   watch: {
     $route(to) {
-      if (to.name == "composants") {
+      if (to.name == "route1") {
         //
-      } else if (to.name == "typographie") {
+      } else if (to.name == "route1") {
         // window.console.log("nope");
       } else if (to.name == "home") {
         //
@@ -82,6 +97,10 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
+}
+
+.home {
+  position: relative;
 }
 //header
 
@@ -134,7 +153,7 @@ body {
   height: 179.04px;
   left: -83.92px;
   top: -117px;
-  background: #4dc879;
+  background: #2e81bf;
   transform: rotate(2.59deg);
   border-radius: 50%;
 }
@@ -147,7 +166,7 @@ body {
   left: -72.96px;
   top: -77px;
   border-radius: 50%;
-  background: #45b46d;
+  background: #5692bf;
   transform: rotate(46.5deg);
 }
 
@@ -172,11 +191,13 @@ body {
   align-self: self-start;
   width: 50%;
   box-sizing: border-box;
-  padding: 40px;
+  padding: 23px 42px;
   border: 1px solid black;
   cursor: pointer;
   font-family: "open sans";
-
+  &.router-link-exact-active {
+    cursor: auto;
+  }
   .top-container {
     display: flex;
     align-items: center;
@@ -187,14 +208,16 @@ body {
       width: 140px;
     }
   }
-  & > p {
-    max-width: 500px;
-  }
+  
   p {
+    
     margin-top: 0px;
     font-size: 14px;
-    &:first_of-type {
-    }
+
+  }
+  & > p {
+    max-width: 500px;
+    margin-top: 15px;
   }
 
   &-container {
@@ -207,8 +230,8 @@ body {
     margin-bottom: 70px;
   }
 
-  // box composants
-  &.composants {
+  // box route1
+  &.route1 {
     position: absolute;
     width: 47%;
     left: 20px;
@@ -219,7 +242,7 @@ body {
       }
     }
   }
-  &.typo {
+  &.route2 {
     position: absolute;
     width: 47%;
     right: 20px;
@@ -236,26 +259,26 @@ body {
 
 // Route changing
 
-.box-container.composants {
-  .box.typo {
+.box-container.route1 {
+  .box.route2 {
     &:hover {
       box-shadow: none;
     }
   }
-  .box.composants {
+  .box.route1 {
     cursor: auto;
     &:hover {
       box-shadow: none;
     }
   }
 }
-.box-container.typographie {
-  .box.typo {
+.box-container.route2 {
+  .box.route2 {
     &:hover {
       box-shadow: none;
     }
   }
-  .box.composants {
+  .box.route1 {
     &:hover {
       box-shadow: none;
     }

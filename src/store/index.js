@@ -1,15 +1,21 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Axios from 'axios';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import blogPosts from './modules/blogPosts';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
+  modules: {
+    blogPosts,
+  },
   state: {
   },
   mutations: {
+
   },
   actions: {
-  },
-  modules: {
+
+    
   }
 })

@@ -1,8 +1,8 @@
-import { gsap } from 'gsap'
-const anim_content = gsap.timeline({ paused: false });
-const anim_composants = gsap.timeline({ paused: false });
+import { gsap } from 'gsap';
+const anim_content = gsap.timeline({ paused: true });
+const anim_route1 = gsap.timeline({ paused: true });
 
-// Sets content animation
+// Sets Route1 content animation
 function init_anim_content() {
     anim_content
         .fromTo(
@@ -13,15 +13,14 @@ function init_anim_content() {
         .to(".composants-content", { opacity: 1, y: 0, duration: 0.5 })
         .to(".composants-content .menu-right", { opacity: 1, y: -195, duration: 0 })
         .from(".composants-content .menu-right li", { opacity: 0, x: 20, duration: 0.2, ease: "power1.in", delay: .2 })
-        .to(".box.composants", { border: "1px solid white", duration: .5, ease: "power1.out", delay: 0.8 })
-        ;
-        anim_content.play();
+        .to(".box.composants", { border: "1px solid white", duration: .5, ease: "power1.out", delay: 0.8 });
+        
 }
 
-// Sets intro animation for composants
+// Sets intro animation for Route1
 // action = play, pause, resume
-function init_anim_composants(action) {
-    anim_composants
+function init_anim_route1() {
+    anim_route1
       .fromTo(
         ".box.composants",
         { width: "47%" },
@@ -84,13 +83,7 @@ function init_anim_composants(action) {
       )
       .to(".box.composants", {border: "1px solid black", width: "100%", duration: 0 }, "<")
       ;
-      if (action == 'play') {
-        anim_composants.play();
-      } else if (action == 'reverse'){
-        anim_composants.reverse();
-      }
-      
 }
 
 
-export { anim_content, init_anim_content, init_anim_composants, anim_composants };
+export { anim_content, anim_route1, init_anim_content, init_anim_route1};
