@@ -1,17 +1,19 @@
 <template>
-  <div class="container">
-    <div
-      v-for="post in allPosts.posts"
-      :key="post.ID"
-      id="post.ID"
-      class="post"
-    >
-      <h2><span class="code">post.title</span>{{ post.title }}</h2>
+<div class="blog">
+   <div class="container">
+    
+    <div v-for="post in allPosts.posts" :key="post.ID" class="post">
+      <div class="title">
+        <span class="code">post.title</span>
+        <h2>{{ post.title }}</h2>
+      </div>
       <span class="code">post.excerpt</span>
-      <p class="excerpt" v-html="post.excerpt"></p>
+      <div class="excerpt" v-html="post.excerpt"></div>
       <p class="author">Author: {{ post.author.name }}</p>
     </div>
   </div>
+</div>
+ 
 </template>
 
 <script>
@@ -21,16 +23,22 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Blog",
+  data() {
+    return {
+    };
+  },
+  
   methods: {
-    ...mapActions(["fetchPosts"])
+    ...mapActions(["fetchPosts"]),
   },
   computed: {
     ...mapGetters(["allPosts"])
   },
   created() {
     this.fetchPosts();
-    console.log(this.allPosts);
-  }
+  },
+  mounted() {},
+  beforeDestroy() {}
 };
 </script>
 
@@ -39,9 +47,12 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 4%;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-left: 10px;
 }
 .post {
+  opacity: 0;
+
   span.code {
     background: #7a90c3;
     padding: 1px 7px 3px;
@@ -54,23 +65,27 @@ export default {
     top: -12px;
     position: absolute;
     left: -10px;
-    
   }
-  h2 {
-    position: relative;
-    font-size: 17px;
+  .title {
     padding: 10px;
     background: #4463ad;
-    color: white;
     border-radius: 5px;
-  }
-  & > span.code {
+
+    h2 {
       position: relative;
+      font-size: 17px;
+      color: white;
+      margin: 0;
+    }
+  }
+
+  & > span.code {
+    position: relative;
     top: 8px;
-    left: -9px; 
+    left: -9px;
     box-shadow: 1px 1px 4px 1px #c5c5c5;
-  } 
-  p.excerpt {
+  }
+  .excerpt {
     background: #f3f3f3;
     border-radius: 3px;
     border: 1px solid #eaeaea;

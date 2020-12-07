@@ -15,8 +15,8 @@ const mutations = {
 };
 
 const actions = {
-    async fetchPosts({ commit }) {
-        const response = await axios.get('https://public-api.wordpress.com/rest/v1.1/sites/jigasite.wordpress.com/posts/?number=2');
+    async fetchPosts({ commit }, number = 10) {
+        const response = await axios.get(`https://public-api.wordpress.com/rest/v1.1/sites/jigasite.wordpress.com/posts/?number=${number}`);
         commit('setPosts', response.data);
       }
 };

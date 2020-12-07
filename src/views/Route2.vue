@@ -28,19 +28,25 @@ export default {
         duration: .7,
         width: "calc(100% - 40px)",
         ease: "power2.out"
-      }, "<+.6");
+      }, "<+.6")
+      .to(".box.route2", {border: "1px solid black", duration: .5, ease: "power1.out"}, "<");
       this.anim_route2.play();
-     // Defines animation for content reveal and plays it
-      this.anim_content
-      .fromTo(".route2-content", {height: "0", display: 'block'},{ height: "auto", y: 50, duration: 1, delay: 1.2 })
-      .to(".route2-content", {opacity: 1, y: 0, duration: .5})
-      .to(".box.route2", {border: "1px solid white", duration: .5, ease: "power1.out", delay: 0.8})
+    //  Defines animation for content reveal and plays it
       
+      this.anim_route2.eventCallback("onComplete", () => {
+        this.anim_content
+
+      .fromTo(".route2-content", {height: "0", display: 'block'},{ height: "auto", y: 0, duration: .7})
+      .to(".box.route2", {border: "1px solid white", duration: .5, ease: "power1.out", delay: 0.2})
+      .fromTo(".post", { opacity: 0, y: 70}, {duration: .3, opacity: 1, y: 0,stagger: {each: .4}, delay: .1}, "<")
+      .fromTo(".post .title h2, .post .excerpt p ", { opacity: 0}, {duration: .3, opacity: 1, stagger: {each: 0.2}, ease: "power2.in"})
       this.anim_content.play();
+      });
+      
+      
   },
   beforeDestroy() {
     this.anim_route2.reverse();
-    this.anim_content.reverse();
   }
 };
 </script>
@@ -48,7 +54,6 @@ export default {
 .route2-content {
   cursor: auto;
   display: none;
-  opacity: 0;
 }
     
 </style>

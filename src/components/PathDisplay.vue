@@ -26,7 +26,7 @@ export default {
     }
 },
   mounted() {
-    tl.fromTo(".pathDisplay",{ scale: 0, opacity: 0 }, {scale: 1, opacity: 1, duration: .5, ease})
+    this.tl.fromTo(".pathDisplay",{ scale: 0, opacity: 0 }, {scale: 1, opacity: 1, duration: .5, ease: "power2.in"})
   }
 };
 </script>
